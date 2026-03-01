@@ -54,7 +54,7 @@ class PyPandocConverter(ConverterInterface):
 
     # Mapping from our format names to Pandoc format identifiers
     _pandoc_format_map = {
-        'md': 'markdown',
+        'md': 'gfm',
         'html': 'html',
         'txt': 'plain',
         'docx': 'docx',
