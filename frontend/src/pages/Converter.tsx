@@ -417,7 +417,7 @@ function Converter() {
                   </li>
                 </ul>
               </div>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-3 flex flex-wrap gap-3">
                 <button
                   type="button"
                   onClick={() => navigate('/files')}
