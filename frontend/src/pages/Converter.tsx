@@ -313,7 +313,7 @@ function Converter() {
   const hasCompletedConversions = completedConversions.length > 0
   const hasStarted = hasPendingFiles || hasCompletedConversions
   const renderUploadArea = () => {
-    const baseClasses = 'flex flex-col items-center justify-center rounded-xl border-2 border-dashed transition-colors duration-200 cursor-pointer px-6 py-10'
+    const baseClasses = 'flex flex-col items-center justify-center rounded-xl border-2 border-dashed transition-colors duration-200 cursor-pointer px-6 py-8'
     const stateClasses = isDragging
       ? 'border-primary bg-surface-dark/60'
       : 'border-surface-dark bg-surface-dark/40 hover:border-primary/60 hover:bg-surface-dark/60'
@@ -378,8 +378,8 @@ function Converter() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 items-stretch">
-            <section className="bg-surface-light rounded-xl p-5 lg:p-6 border border-surface-dark shadow-xl flex flex-col justify-between h-full">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 items-stretch">
+            <section className="bg-surface-light rounded-xl p-6 lg:p-8 border border-surface-dark shadow-xl flex flex-col justify-between h-full">
               <div>
                 <h2 className="text-lg font-semibold text-text mb-3">
                   How it works
@@ -435,7 +435,7 @@ function Converter() {
               </div>
             </section>
 
-            <section className="bg-surface-light rounded-xl p-5 lg:p-6 border border-surface-dark shadow-xl flex flex-col justify-between h-full">
+            <section className="bg-surface-light rounded-xl p-6 lg:p-8 border border-surface-dark shadow-xl flex flex-col justify-between h-full">
               <div>
                 <h2 className="text-lg font-semibold text-text mb-3">
                   Start a new conversion
