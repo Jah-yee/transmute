@@ -313,7 +313,7 @@ function Converter() {
   const hasCompletedConversions = completedConversions.length > 0
   const hasStarted = hasPendingFiles || hasCompletedConversions
   const renderUploadArea = () => {
-    const baseClasses = 'flex flex-col items-center justify-center rounded-xl border-2 border-dashed transition-colors duration-200 cursor-pointer px-6 py-8'
+    const baseClasses = 'flex flex-col items-center justify-center rounded-xl border-2 border-dashed transition-colors duration-200 cursor-pointer px-6 py-6'
     const stateClasses = isDragging
       ? 'border-primary bg-surface-dark/60'
       : 'border-surface-dark bg-surface-dark/40 hover:border-primary/60 hover:bg-surface-dark/60'
@@ -369,7 +369,7 @@ function Converter() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-surface-dark to-surface-light px-4 py-6 lg:py-4 flex items-center">
         <div className="max-w-5xl mx-auto w-full">
-          <div className="mb-10 text-center">
+          <div className="mb-8 text-center">
             <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-primary">
               Convert files on your own server
             </h1>
@@ -381,7 +381,7 @@ function Converter() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 items-stretch">
             <section className="bg-surface-light rounded-xl p-6 lg:p-8 border border-surface-dark shadow-xl flex flex-col justify-between h-full">
               <div>
-                <h2 className="text-lg font-semibold text-text mb-3">
+                <h2 className="text-lg font-semibold tracking-tight text-text mb-3">
                   How it works
                 </h2>
                 <p className="text-sm lg:text-base text-text-muted leading-relaxed mb-4">
@@ -437,7 +437,7 @@ function Converter() {
 
             <section className="bg-surface-light rounded-xl p-6 lg:p-8 border border-surface-dark shadow-xl flex flex-col justify-between h-full">
               <div>
-                <h2 className="text-lg font-semibold text-text mb-3">
+                <h2 className="text-lg font-semibold tracking-tight text-text mb-3">
                   Start a new conversion
                 </h2>
                 <p className="text-sm lg:text-base text-text-muted leading-relaxed mb-4">
