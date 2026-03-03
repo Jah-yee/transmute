@@ -377,7 +377,9 @@ function Converter() {
               <span className="inline-block ml-1">🗄️</span>
             </h1>
             <p className="mt-4 text-sm lg:text-base text-text-muted leading-relaxed max-w-2xl mx-auto">
-              Drag in images, video, audio or documents and choose exactly how you want them converted. Your files stay on this server.
+              Drop in images, video, audio or documents and pick the formats that work for you.
+              <br className="hidden md:block" />
+              Everything stays on this server.
             </p>
           </div>
 
