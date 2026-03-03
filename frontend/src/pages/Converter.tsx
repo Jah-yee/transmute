@@ -431,7 +431,7 @@ function Converter() {
                 <button
                   type="button"
                   onClick={() => navigate('/history')}
-                  className="bg-primary/15 hover:bg-primary/30 text-primary-light text-sm font-medium py-2 px-4 rounded-lg shadow-[0_2px_0_rgba(0,0,0,0.6)] transition duration-200"
+                  className="bg-primary/15 text-primary-light text-sm font-medium py-2 px-4 rounded-lg border border-primary/40 shadow-[0_2px_0_rgba(0,0,0,0.5)] transform transition duration-150 hover:bg-primary/30 hover:shadow-none hover:translate-y-0.5"
                 >
                   View conversion history
                 </button>
