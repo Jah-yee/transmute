@@ -26,24 +26,35 @@ function RouteTitle() {
   return null
 }
 
+function AppShell() {
+  const location = useLocation()
+  const isConverter = location.pathname === '/'
+
+  return (
+    <>
+      <RouteTitle />
+      <div className="flex flex-col h-screen overflow-hidden">
+        <Header />
+        <main className={`flex-grow ${isConverter ? 'overflow-hidden' : 'overflow-auto'}`}>
+          <Routes>
+            <Route path="/" element={<Converter />} />
+            <Route path="/files" element={<Files />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </>
+  )
+}
+
 function App() {
   return (
     <ThemeProvider>
       <Router>
-        <RouteTitle />
-        <div className="flex flex-col h-screen overflow-hidden">
-          <Header />
-          <main className="flex-grow overflow-auto">
-            <Routes>
-              <Route path="/" element={<Converter />} />
-              <Route path="/files" element={<Files />} />
-              <Route path="/history" element={<History />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <AppShell />
       </Router>
     </ThemeProvider>
   )

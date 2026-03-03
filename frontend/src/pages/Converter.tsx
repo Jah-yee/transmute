@@ -367,16 +367,16 @@ function Converter() {
   // Initial landing page - shown before any files are selected
   if (!hasStarted && !uploading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-surface-dark to-surface-light px-4 py-6 lg:py-4 flex items-center">
-        <div className="max-w-5xl mx-auto w-full">
-          <div className="mb-8 text-center">
-            <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-primary">
+      <div className="h-screen overflow-hidden bg-gradient-to-br from-surface-dark to-surface-light px-4 py-6 lg:py-4 flex items-center">
+        <div className="max-w-5xl mx-auto w-full -translate-y-8">
+          <div className="mb-10 lg:mb-12 text-center">
+            <h1 className="text-4xl lg:text-6xl font-extrabold tracking-tight text-primary">
               Convert files
-              <span className="inline-block ml-1">📄</span>
-              {' '}on your own server
-              <span className="inline-block ml-1">🗄️</span>
+              <span className="inline-block mx-1">📄</span>
+              on your own server
+              <span className="inline-block mx-1">🗄️</span>
             </h1>
-            <p className="mt-4 text-sm lg:text-base text-text-muted leading-relaxed max-w-2xl mx-auto">
+            <p className="mt-5 text-base lg:text-lg font-medium text-text-muted leading-relaxed max-w-3xl mx-auto">
               Drag in images, video, audio or documents and choose exactly how you want them converted. Your files stay on this server.
             </p>
           </div>
@@ -392,7 +392,7 @@ function Converter() {
                 </p>
                 <ul className="space-y-2 text-sm lg:text-base text-text-muted leading-snug">
                   <li className="flex items-start gap-2">
-                    <span className="mt-0 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-[12px] font-semibold text-surface-dark">
+                    <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white text-[14px] font-semibold text-surface-dark">
                       1
                     </span>
                     <p className="font-medium">
@@ -401,7 +401,7 @@ function Converter() {
                     </p>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-0 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-[12px] font-semibold text-surface-dark">
+                    <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white text-[14px] font-semibold text-surface-dark">
                       2
                     </span>
                     <p className="font-medium">
@@ -410,7 +410,7 @@ function Converter() {
                     </p>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-0 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-[12px] font-semibold text-surface-dark">
+                    <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white text-[14px] font-semibold text-surface-dark">
                       3
                     </span>
                     <p className="font-medium">
@@ -431,7 +431,7 @@ function Converter() {
                 <button
                   type="button"
                   onClick={() => navigate('/history')}
-                  className="bg-primary/15 text-primary-light text-sm font-medium py-2 px-4 rounded-lg border border-surface-dark shadow-[0_2px_0_rgba(0,0,0,0.5)] transform transition duration-150 hover:bg-primary/30 hover:border-primary/40 hover:shadow-none hover:translate-y-0.5"
+                  className="bg-primary/15 text-primary-light text-sm font-medium py-2 px-4 rounded-lg border border-surface-dark shadow-[0_2px_0_rgba(0,0,0,0.5)] transform transition-all duration-300 ease-in-out hover:bg-primary/30 hover:border-primary/40 hover:shadow-none hover:translate-y-0.5"
                 >
                   View conversion history
                 </button>
@@ -464,7 +464,7 @@ function Converter() {
 
   // File list view - shown once files have been selected
   return (
-    <div className="min-h-screen bg-gradient-to-br from-surface-dark to-surface-light p-8">
+    <div className="h-screen overflow-hidden bg-gradient-to-br from-surface-dark to-surface-light p-8">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col gap-2 mb-6">
           <h1 className="text-3xl font-bold text-primary">Transmute</h1>
