@@ -10,13 +10,13 @@ class ConverterRegistry:
     Registry for managing available converters.
     Automatically discovers and registers all converter classes.
     """
-    def __init__(self) -> None:
+    def __init__(self, skip_unregisterable: bool = True) -> None:
         self.converters = {}
         self.input_format_map = {}  # Maps input format -> list of converter classes
         self.output_format_map = {}  # Maps output format -> list of converter classes
-        self._auto_register()
+        self._auto_register(skip_unregisterable)
     
-    def _auto_register(self) -> None:
+    def _auto_register(self, skip_unregisterable: bool) -> None:
         """
         Automatically discover and register all converter classes from the converters module.
         """
@@ -25,8 +25,9 @@ class ConverterRegistry:
             # Check if it's a subclass of ConverterInterface (but not the interface itself)
             # And also check if it can be registered (e.g., required dependencies are met)
             if issubclass(obj, ConverterInterface) and \
-                obj is not ConverterInterface and \
-                obj.can_register():
+                obj is not ConverterInterface:
+                if skip_unregisterable and not obj.can_register():
+                    continue
                 self.register_converter(obj)
     
     def register_converter(self, converter_class) -> None:
@@ -140,8 +141,8 @@ class ConverterRegistry:
         """
         result = {}
         for name, converter_class in self.converters.items():
-            if hasattr(converter_class, 'supported_formats'):
-                result[name] = list(converter_class.supported_formats)
+            if hasattr(converter_class, 'supported_input_formats'):
+                result[name] = list(converter_class.supported_input_formats)
             else:
                 result[name] = []
         return result
