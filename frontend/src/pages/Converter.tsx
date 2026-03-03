@@ -387,12 +387,12 @@ function Converter() {
                 <p className="text-sm lg:text-base text-text-muted leading-relaxed mb-4">
                   Every conversion follows the same three simple steps.
                 </p>
-                <ul className="space-y-2 text-sm text-text-muted leading-snug">
+                <ul className="space-y-2 text-sm lg:text-base text-text-muted leading-snug">
                   <li className="flex items-start gap-2">
                     <span className="mt-0 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-[12px] font-semibold text-surface-dark">
                       1
                     </span>
-                    <p>
+                    <p className="font-medium">
                       <span className="font-semibold text-text">Drop.</span>{' '}
                       Add one or many files from your device.
                     </p>
@@ -401,7 +401,7 @@ function Converter() {
                     <span className="mt-0 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-[12px] font-semibold text-surface-dark">
                       2
                     </span>
-                    <p>
+                    <p className="font-medium">
                       <span className="font-semibold text-text">Choose.</span>{' '}
                       Pick the output formats that match your workflow.
                     </p>
@@ -410,7 +410,7 @@ function Converter() {
                     <span className="mt-0 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-[12px] font-semibold text-surface-dark">
                       3
                     </span>
-                    <p>
+                    <p className="font-medium">
                       <span className="font-semibold text-text">Download.</span>{' '}
                       Download the converted files or a single zip archive.
                     </p>
