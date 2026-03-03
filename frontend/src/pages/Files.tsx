@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FileListItem, { FileInfo } from '../components/FileListItem'
+import { api } from '../api'
 
 function Files() {
   const [files, setFiles] = useState<FileInfo[]>([])
@@ -14,7 +15,7 @@ function Files() {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const response = await fetch('/api/files')
+        const response = await fetch(api.files())
         if (!response.ok) throw new Error('Failed to fetch files')
         const data = await response.json()
         setFiles(data.files)
@@ -30,7 +31,7 @@ function Files() {
   const handleDelete = async (fileId: string) => {
     setDeletingId(fileId)
     try {
-      const response = await fetch(`/api/files/${fileId}`, { method: 'DELETE' })
+      const response = await fetch(api.filesId(fileId), { method: 'DELETE' })
       if (!response.ok) throw new Error('Delete failed')
       setFiles(prev => prev.filter(f => f.id !== fileId))
       setSelectedIds(prev => {
@@ -73,7 +74,7 @@ function Files() {
     
     for (const fileId of idsToDelete) {
       try {
-        const response = await fetch(`/api/files/${fileId}`, { method: 'DELETE' })
+        const response = await fetch(api.filesId(fileId), { method: 'DELETE' })
         if (!response.ok) throw new Error('Delete failed')
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Delete failed')

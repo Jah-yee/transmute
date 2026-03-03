@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTheme, type ThemeName } from '../ThemeContext'
+import { api } from '../api'
 
 interface Theme {
   value: string
@@ -57,7 +58,7 @@ function Settings() {
 
   // Load settings once on mount
   useEffect(() => {
-    fetch('/api/settings')
+    fetch(api.settings())
       .then(r => r.ok ? r.json() : Promise.reject('Failed to load settings'))
       .then((data: AppSettings) => {
         setTheme(data.theme as ThemeName)

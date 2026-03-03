@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import FileListItem, { FileInfo, ConversionInfo } from '../components/FileListItem'
+import { api } from '../api'
 
 interface OriginalFileInfo {
   id: string
@@ -33,7 +34,7 @@ function History() {
   useEffect(() => {
     const fetchConversions = async () => {
       try {
-        const response = await fetch('/api/conversions/complete')
+        const response = await fetch(api.conversionsComplete())
         if (!response.ok) throw new Error('Failed to fetch conversions')
         const data = await response.json()
         setConversions(data.conversions)

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import { api } from '../api'
 
 function Footer() {
   const [appInfo, setAppInfo] = useState<{ name: string; version: string } | null>(null)
 
   useEffect(() => {
-    fetch('/api/health/info')
+    fetch(api.health())
       .then(res => res.json())
       .then(data => setAppInfo(data))
       .catch(() => { }) // Silently fail if API is unavailable

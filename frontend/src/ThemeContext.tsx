@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react'
+import { api } from './api'
 
 export type ThemeName = 'rubedo' | 'citrinitas' | 'viriditas' | 'nigredo' | 'albedo' | 'aurora' | 'caelum'
 
@@ -42,7 +43,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   // On mount, validate against the backend (authoritative source of truth).
   // If another browser changed the theme, this corrects localStorage too.
   useEffect(() => {
-    fetch('/api/settings')
+    fetch(api.settings())
       .then(r => (r.ok ? r.json() : null))
       .then(data => {
         const name = (data?.theme ?? 'rubedo') as ThemeName

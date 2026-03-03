@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import FileListItem, { FileInfo, ConversionInfo } from '../components/FileListItem'
+import { api } from '../api'
 
 interface PendingFile {
   file: FileInfo
@@ -29,7 +30,7 @@ function Converter() {
 
   // Load auto-download setting
   useEffect(() => {
-    fetch('/api/settings')
+    fetch(api.settings())
       .then(r => r.ok ? r.json() : Promise.reject())
       .then(data => setAutoDownload(!!data.auto_download))
       .catch(() => {})
@@ -69,7 +70,7 @@ function Converter() {
       formData.append('file', file)
 
       try {
-        const response = await fetch('/api/files', {
+        const response = await fetch(api.files(), {
           method: 'POST',
           body: formData,
         })
@@ -234,7 +235,7 @@ function Converter() {
   const handleDownload = async (conversion: ConversionInfo) => {
     setDownloadingId(conversion.id)
     try {
-      const response = await fetch(`/api/files/${conversion.id}`)
+      const response = await fetch(api.filesId(conversion.id))
       if (!response.ok) throw new Error('Download failed')
 
       const blob = await response.blob()
