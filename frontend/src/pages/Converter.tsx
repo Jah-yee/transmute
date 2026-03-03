@@ -421,14 +421,14 @@ function Converter() {
                 <button
                   type="button"
                   onClick={() => navigate('/files')}
-                  className="bg-surface-dark hover:bg-surface-light text-text-muted hover:text-text text-sm font-medium py-2 px-4 rounded-lg border border-surface-dark transition duration-200"
+                  className="bg-surface-dark hover:bg-surface-light text-text-muted hover:text-text text-sm font-medium py-2 px-4 rounded-lg border border-surface-dark shadow-[0_2px_0_rgba(0,0,0,0.6)] transition duration-200"
                 >
                   View uploaded files
                 </button>
                 <button
                   type="button"
                   onClick={() => navigate('/history')}
-                  className="bg-primary/15 hover:bg-primary/30 text-primary-light text-sm font-medium py-2 px-4 rounded-lg transition duration-200"
+                  className="bg-primary/15 hover:bg-primary/30 text-primary-light text-sm font-medium py-2 px-4 rounded-lg shadow-[0_2px_0_rgba(0,0,0,0.6)] transition duration-200"
                 >
                   View conversion history
                 </button>
