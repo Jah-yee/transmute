@@ -389,8 +389,8 @@ function Converter() {
                 </p>
                 <ul className="space-y-2 text-sm text-text-muted leading-snug">
                   <li className="flex items-start gap-2">
-                    <span className="mt-0.5 text-sm font-semibold text-text">
-                      ①
+                    <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-[10px] font-semibold text-surface-dark">
+                      1
                     </span>
                     <p>
                       <span className="font-semibold text-text">Drop.</span>{' '}
@@ -398,8 +398,8 @@ function Converter() {
                     </p>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-0.5 text-sm font-semibold text-text">
-                      ②
+                    <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-[10px] font-semibold text-surface-dark">
+                      2
                     </span>
                     <p>
                       <span className="font-semibold text-text">Choose.</span>{' '}
@@ -407,8 +407,8 @@ function Converter() {
                     </p>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-0.5 text-sm font-semibold text-text">
-                      ③
+                    <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-[10px] font-semibold text-surface-dark">
+                      3
                     </span>
                     <p>
                       <span className="font-semibold text-text">Download.</span>{' '}
