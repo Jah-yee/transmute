@@ -3,9 +3,47 @@
  */
 
 /**
- * Trigger a browser download from a blob response
- * @param blob - The blob to download
- * @param filename - The filename for the download
+ * Extract filename from content-disposition header or fallback to default
+ */
+function extractFilename(response: Response, fallback: string): string {
+  const contentDisposition = response.headers.get('content-disposition')
+  if (contentDisposition) {
+    const match = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)
+    if (match) {
+      return match[1].replace(/['"]/g, '')
+    }
+  }
+  return fallback
+}
+
+/**
+ * Download a file from fetch response
+ * @param response - The fetch Response object
+ * @param fallbackFilename - Fallback filename if not provided in headers
+ * @returns The downloaded filename
+ */
+export async function downloadFromResponse(response: Response, fallbackFilename: string = 'download'): Promise<string> {
+  if (!response.ok) {
+    throw new Error(`Download failed: ${response.statusText}`)
+  }
+  
+  const blob = await response.blob()
+  const filename = extractFilename(response, fallbackFilename)
+  
+  const url = window.URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  window.URL.revokeObjectURL(url)
+  
+  return filename
+}
+
+/**
+ * Trigger a browser download from a blob
  */
 export function downloadBlob(blob: Blob, filename: string): void {
   const url = window.URL.createObjectURL(blob)
@@ -16,18 +54,4 @@ export function downloadBlob(blob: Blob, filename: string): void {
   a.click()
   document.body.removeChild(a)
   window.URL.revokeObjectURL(url)
-}
-
-/**
- * Download a file from a URL
- * @param url - The URL to download from
- * @param filename - The filename for the download
- */
-export async function downloadFromUrl(url: string, filename: string): Promise<void> {
-  const response = await fetch(url)
-  if (!response.ok) {
-    throw new Error(`Download failed: ${response.statusText}`)
-  }
-  const blob = await response.blob()
-  downloadBlob(blob, filename)
 }
