@@ -17,6 +17,7 @@ const ThemeContext = createContext<ThemeContextValue>({
 })
 
 const STORAGE_KEY = 'transmute-theme'
+const KEEP_ORIGINALS_KEY = 'transmute-keep-originals'
 
 function applyThemeToDom(name: ThemeName) {
   document.documentElement.setAttribute('data-theme', name)
@@ -33,15 +34,28 @@ function readStoredTheme(): ThemeName {
   return 'rubedo'
 }
 
+function readStoredKeepOriginals(): boolean {
+  try {
+    const v = localStorage.getItem(KEEP_ORIGINALS_KEY)
+    if (v !== null) return v === 'true'
+  } catch { /* storage unavailable */ }
+  return true
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
   // Initialise from localStorage so React state matches what the blocking
   // script already applied to the DOM — avoids a redundant re-render.
   const [theme, setThemeState] = useState<ThemeName>(readStoredTheme)
-  const [keepOriginals, setKeepOriginals] = useState(true)
+  const [keepOriginals, setKeepOriginalsState] = useState(readStoredKeepOriginals)
 
   const setTheme = useCallback((name: ThemeName) => {
     setThemeState(name)
     applyThemeToDom(name)
+  }, [])
+
+  const setKeepOriginals = useCallback((value: boolean) => {
+    setKeepOriginalsState(value)
+    try { localStorage.setItem(KEEP_ORIGINALS_KEY, String(value)) } catch { /* storage unavailable */ }
   }, [])
 
   // On mount, validate against the backend (authoritative source of truth).
@@ -55,7 +69,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         setKeepOriginals(data?.keep_originals ?? true)
       })
       .catch(() => {/* keep whatever localStorage had */})
-  }, [setTheme])
+  }, [setTheme, setKeepOriginals])
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, keepOriginals, setKeepOriginals }}>
