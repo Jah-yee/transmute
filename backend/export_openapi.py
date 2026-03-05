@@ -8,9 +8,17 @@ Usage (from the backend/ directory):
 
 import argparse
 import json
+import logging
 from pathlib import Path
 
 from main import create_app
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 
 def export_openapi(output_path: Path) -> None:
@@ -19,7 +27,7 @@ def export_openapi(output_path: Path) -> None:
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(schema, indent=2))
-    print(f"OpenAPI schema written to {output_path.resolve()}")
+    logger.info(f"OpenAPI schema written to {output_path.resolve()}")
 
 
 if __name__ == "__main__":
