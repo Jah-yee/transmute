@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import FileListItem, { FileInfo, ConversionInfo } from '../components/FileListItem'
 import { api } from '../api'
 import { downloadBlob, downloadFromResponse } from '../download'
+import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
 
 interface PendingFile {
   file: FileInfo
@@ -36,6 +37,25 @@ function Converter() {
       .then(data => setAutoDownload(!!data.auto_download))
       .catch(() => {})
   }, [])
+
+  // File input ref for keyboard shortcut
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  // Keyboard shortcuts
+  useKeyboardShortcuts({
+    onOpenFilePicker: () => {
+      fileInputRef.current?.click()
+    },
+    onStartConversion: () => {
+      if (pendingFiles.length > 0 && !converting) {
+        handleConvertAll()
+      }
+    },
+    onClearSelection: () => {
+      setPendingFiles([])
+      setCompletedConversions([])
+    }
+  })
 
   // Handle files passed from Files page
   useEffect(() => {
@@ -266,6 +286,7 @@ function Converter() {
           <div className="space-y-4">
             <div>
               <input
+                ref={fileInputRef}
                 type="file"
                 multiple
                 onChange={handleFileSelect}
